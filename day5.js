@@ -12,6 +12,15 @@ function part1(input) {
   return input.length;
 }
 
+function part2(input) {
+  return 'abcdefghijklmnopqrstuvwxyz'
+    .split('')
+    .map(letter => new RegExp(letter, 'gi'))
+    .map(regex => input.replace(regex, ''))
+    .map(s => part1(s))
+    .reduce((smaller, current) => smaller < current ? smaller : current);
+}
+
 const smallerSample = 'dabAcCaCBAcCcaDA';
 
-console.log(part1(input));
+console.log(part2(input));
